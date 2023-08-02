@@ -1,5 +1,9 @@
 using System.Xml.Xsl;
 using System.Xml;
+using MauiXSLT.Data;
+using System.Net.Security;
+using System.Diagnostics;
+using System.Xml.Linq;
 
 namespace MauiXSLT;
 
@@ -14,22 +18,35 @@ public partial class FullScreenXSLT : ContentPage
     string htmlResult;
     string xslContent;
     Task<Stream> txtStream;
+    StreamReader xsltStream;
+    StreamReader inventoryStream;
+    string xmlText;
+    string xsltText;
+    StringReader xmlStringReader;
 
     public FullScreenXSLT()
 	{
 		InitializeComponent();
-	}
+        var inventoryPath = MauiDirectory.WriteToFileSystem("inventory.xml");
+        var xsltTextPath = MauiDirectory.WriteToFileSystem("XsltText.txt");
+        Console.WriteLine(inventoryPath);
+        Console.WriteLine(xsltTextPath);
 
-    protected async override void OnAppearing()
-    {
-        var txtStream = await FileSystem.OpenAppPackageFileAsync("XsltText.txt");
-        xslContent = new StreamReader(txtStream).ReadToEnd();
+        xmlText = File.ReadAllText(inventoryPath);
+        xsltText = File.ReadAllText(xsltTextPath);
+
+        xmlStringReader = new StringReader(xmlText);
+
+        xslContent = xsltText.ToString();
+
+        bool inventoryYes = File.Exists(inventoryPath);
+        bool xsltTextYes = File.Exists(xsltTextPath);
+        Console.WriteLine($"Inventory.xml exists {inventoryYes}");
+        Console.WriteLine($"xsltText exists {xsltTextYes}");
     }
-
-    private async void XsltTranslator_Clicked(object sender, EventArgs e)
+    private void XsltTranslator_Clicked(object sender, EventArgs e)
     {
-        var xmlStream = await FileSystem.OpenAppPackageFileAsync("inventory.xml");
-
+        
         LblError.Text = "";
         xslContent = XsltEditor.Text;
         xslReaderStringReader = new StringReader(xslContent);
@@ -41,7 +58,7 @@ public partial class FullScreenXSLT : ContentPage
             {
                 xslt.Load(xslReader);
             }
-            using (var xmlReader = XmlReader.Create(xmlStream))
+            using (var xmlReader = XmlReader.Create(xmlStringReader))
             {
                 using (outputWriter = new StringWriter())
                 {

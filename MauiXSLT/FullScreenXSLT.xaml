@@ -5,12 +5,17 @@
              Title="FullScreenXSLT">
 
     <ScrollView>
-        <FlexLayout>
-            <Editor x:Name="XsltEditor"></Editor>
-            <Label x:Name="LblError" LineBreakMode="WordWrap" FontSize="Large" TextColor="Red" FontAttributes="Bold" />
-            <Button x:Name="XsltTranslator"  Text="Translate XSLT" Clicked="XsltTranslator_Clicked" />
-            <WebView x:Name="XsltWebView"></WebView>
-        </FlexLayout>
+        <VerticalStackLayout>
+            <FlexLayout>
+                <Editor x:Name="XsltEditor" FlexLayout.Grow="2"></Editor>
+            </FlexLayout>
+            <FlexLayout>
+                <Label x:Name="LblError" WidthRequest="500" HeightRequest="80" Text="Info Panel" FontSize="Large" TextColor="Red" FontAttributes="Bold" />
+                <Button x:Name="XsltTranslator" WidthRequest="300" HeightRequest="80" Text="Translate XSLT" Clicked="XsltTranslator_Clicked" />
+                <WebView x:Name="XsltWebView" FlexLayout.AlignSelf="Auto"></WebView>
+            </FlexLayout>
+        </VerticalStackLayout>
+
     </ScrollView>
     
 </ContentPage>

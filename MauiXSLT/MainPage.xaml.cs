@@ -2,6 +2,8 @@
 using System.Xml.Xsl;
 using System.Globalization;
 using System.Text;
+using MauiXSLT.Data;
+using System.Diagnostics;
 
 namespace MauiXSLT;
 
@@ -16,17 +18,35 @@ public partial class MainPage : ContentPage
     string htmlResult;
     string xslContent;
     Task<Stream> txtStream;
-
+    FileStream inventoryStream;
+    FileStream xsltStream;
+    StringReader xmlStringReader;
+    string xmlText;
+    string xsltText;
 
     public MainPage()
     {
         InitializeComponent();
-        
+        var inventoryPath = MauiDirectory.WriteToFileSystem("inventory.xml");
+        var xsltTextPath = MauiDirectory.WriteToFileSystem("XsltText.txt");
+        Console.WriteLine(inventoryPath);
+        Console.WriteLine(xsltTextPath);
+         
+        xmlText = File.ReadAllText(inventoryPath);
+        xsltText = File.ReadAllText(xsltTextPath);
+
+        xmlStringReader = new StringReader(xmlText);
+
+        xslContent = xsltText.ToString();
+
+       bool inventoryYes = File.Exists(inventoryPath);
+       bool xsltTextYes = File.Exists(xsltTextPath);
+        Console.WriteLine($"Inventory.xml exists {inventoryYes}");
+        Console.WriteLine($"xsltText exists {xsltTextYes}");
+
     }
     protected async void XsltTranslator_Clicked(object sender, EventArgs e)
     {
-        var xmlStream = await FileSystem.OpenAppPackageFileAsync("inventory.xml");
-        
         LblError.Text = "";      
         xslContent = XsltEditor.Text;
         xslReaderStringReader = new StringReader(xslContent);
@@ -38,7 +58,7 @@ public partial class MainPage : ContentPage
             {
                 xslt.Load(xslReader);
             }
-            using (var xmlReader = XmlReader.Create(xmlStream))
+            using (var xmlReader = XmlReader.Create(xmlStringReader))
             {
                 using (outputWriter = new StringWriter())
                 {
@@ -52,11 +72,6 @@ public partial class MainPage : ContentPage
         {
             LblError.Text = ex.Message;
         }
-    }
-    protected async override void OnAppearing()
-    {
-        var txtStream = await FileSystem.OpenAppPackageFileAsync("XsltText.txt");
-        xslContent = new StreamReader(txtStream).ReadToEnd();
     }
 }
 

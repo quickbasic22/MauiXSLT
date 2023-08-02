@@ -12,7 +12,7 @@
         ContentTemplate="{DataTemplate local:FullScreenXSLT}"
         Route="FullScreenXSLT" />
     <ShellContent
-        Title="Split Screen XSLT"
+        Title="Split Screen XSLT (MainPage)"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
     <ShellContent

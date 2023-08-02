@@ -49,8 +49,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiAsset Remove="Resources\Raw\inventory.xml" />
+	  <MauiAsset Remove="Resources\Raw\XsltText.txt" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Resources\Raw\inventory.xml" />
 	  <None Remove="Resources\Raw\XsltText.txt" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Resources\Raw\inventory.xml" />
+	  <EmbeddedResource Include="Resources\Raw\XsltText.txt" />
 	</ItemGroup>
 
 	<ItemGroup>
