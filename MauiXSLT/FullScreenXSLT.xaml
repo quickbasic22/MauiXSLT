@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiXSLT.FullScreenXSLT"
+             Title="FullScreenXSLT">
+
+    <ScrollView>
+        <FlexLayout>
+            <Editor x:Name="XsltEditor"></Editor>
+            <Label x:Name="LblError" LineBreakMode="WordWrap" FontSize="Large" TextColor="Red" FontAttributes="Bold" />
+            <Button x:Name="XsltTranslator"  Text="Translate XSLT" Clicked="XsltTranslator_Clicked" />
+            <WebView x:Name="XsltWebView"></WebView>
+        </FlexLayout>
+    </ScrollView>
+    
+</ContentPage>

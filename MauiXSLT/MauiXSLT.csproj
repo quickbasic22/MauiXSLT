@@ -49,13 +49,21 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Raw\inventory.xml" />
+	  <None Remove="Resources\Raw\XsltText.txt" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
-		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
-		<PackageReference Include="SQLite.Net-PCL" Version="3.1.1" />
-		<PackageReference Include="SQLiteNetExtensions" Version="2.1.0" />
-		<PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.v110_xp" Version="1.1.15" />
-		<PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.v140" Version="1.1.14" />
-		<PackageReference Include="SQLitePCLRaw.provider.e_sqlite3.net45" Version="1.1.14" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="FullScreenXSLT.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ViewFiles.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

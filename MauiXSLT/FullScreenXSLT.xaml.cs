@@ -1,11 +1,9 @@
-﻿using System.Xml;
 using System.Xml.Xsl;
-using System.Globalization;
-using System.Text;
+using System.Xml;
 
 namespace MauiXSLT;
 
-public partial class MainPage : ContentPage
+public partial class FullScreenXSLT : ContentPage
 {
     XslCompiledTransform xslt;
     XmlReader xslReader;
@@ -17,17 +15,22 @@ public partial class MainPage : ContentPage
     string xslContent;
     Task<Stream> txtStream;
 
+    public FullScreenXSLT()
+	{
+		InitializeComponent();
+	}
 
-    public MainPage()
+    protected async override void OnAppearing()
     {
-        InitializeComponent();
-        
+        var txtStream = await FileSystem.OpenAppPackageFileAsync("XsltText.txt");
+        xslContent = new StreamReader(txtStream).ReadToEnd();
     }
-    protected async void XsltTranslator_Clicked(object sender, EventArgs e)
+
+    private async void XsltTranslator_Clicked(object sender, EventArgs e)
     {
         var xmlStream = await FileSystem.OpenAppPackageFileAsync("inventory.xml");
-        
-        LblError.Text = "";      
+
+        LblError.Text = "";
         xslContent = XsltEditor.Text;
         xslReaderStringReader = new StringReader(xslContent);
         try
@@ -53,10 +56,4 @@ public partial class MainPage : ContentPage
             LblError.Text = ex.Message;
         }
     }
-    protected async override void OnAppearing()
-    {
-        var txtStream = await FileSystem.OpenAppPackageFileAsync("XsltText.txt");
-        xslContent = new StreamReader(txtStream).ReadToEnd();
-    }
 }
-

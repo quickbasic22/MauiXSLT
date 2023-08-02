@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiXSLT.ViewFiles"
+             Title="ViewFiles">
+    <VerticalStackLayout>
+        <Label FontSize="Large" TextColor="DarkViolet" Text="Select A File" />
+        <Button x:Name="BtnFilePicker" Text="View Files" FontSize="Large" TextColor="DarkOrange" Clicked="BtnFilePicker_Clicked" />
+    </VerticalStackLayout>
+</ContentPage>
