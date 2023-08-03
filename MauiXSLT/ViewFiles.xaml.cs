@@ -58,7 +58,7 @@ public partial class ViewFiles : ContentPage
         PickOptions pickOptions = new PickOptions();
         pickOptions.PickerTitle = "Text and XML File Picker";
 
-        var fileResults = await PickAndShow(pickOptions);
+        Microsoft.Maui.Storage.FileResult fileResults = await PickAndShow(pickOptions);
         var FullPathToFile = fileResults.FullPath;
         await DisplayAlert(FullPathToFile, FullPathToFile, "Cancel");
     }

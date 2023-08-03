@@ -12,11 +12,11 @@ namespace MauiXSLT.Data
         {
             var assembly = Application.Current.GetType().Assembly;
             var resourceName1 = "MauiXSLT.Resources.Raw.";
-            resourceName1 = string.Concat(resourceName1, filename);
+            resourceName1 = resourceName1 + filename;
             var AppDataFileName = Path.Combine(FileSystem.AppDataDirectory, filename);
             try
             { 
-                using (var stream = assembly.GetManifestResourceStream(AppDataFileName))
+                using (var stream = assembly.GetManifestResourceStream(resourceName1))
                 {
                     if (stream != null)
                     {

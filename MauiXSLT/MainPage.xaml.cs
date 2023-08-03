@@ -16,40 +16,69 @@ public partial class MainPage : ContentPage
     string xmlPath;
     StringWriter outputWriter;
     string htmlResult;
-    string xslContent;
     Task<Stream> txtStream;
     FileStream inventoryStream;
     FileStream xsltStream;
     StringReader xmlStringReader;
     string xmlText;
     string xsltText;
+    string inventoryPath;
+    string xsltTextPath;
 
     public MainPage()
     {
         InitializeComponent();
-        var inventoryPath = MauiDirectory.WriteToFileSystem("inventory.xml");
-        var xsltTextPath = MauiDirectory.WriteToFileSystem("XsltText.txt");
-        Console.WriteLine(inventoryPath);
-        Console.WriteLine(xsltTextPath);
-         
-        xmlText = File.ReadAllText(inventoryPath);
-        xsltText = File.ReadAllText(xsltTextPath);
+         if(Microsoft.Maui.Devices.DeviceInfo.Platform == DevicePlatform.Android)
+        {
+            if (!File.Exists(MauiDirectory.GetAppDataDirFileName("inventory.xml")))
+            {
+                inventoryPath = MauiDirectory.WriteToFileSystem("inventory.xml");
+                xmlText = File.ReadAllText(inventoryPath);
+                bool inventoryYes = File.Exists(inventoryPath);
+                Console.WriteLine(inventoryPath);
+                Console.WriteLine($"Inventory.xml exists {inventoryYes}");
+            }
+            else if (File.Exists(MauiDirectory.GetAppDataDirFileName("inventory.xml")))
+            {
+                inventoryPath = Path.Combine(MauiDirectory.GetAppDataDirFileName("inventory.xml"));
+                xmlText = File.ReadAllText(inventoryPath);
+                bool inventoryYes = File.Exists(inventoryPath);
+                Console.WriteLine(inventoryPath);
+                Console.WriteLine($"Inventory.xml exists {inventoryYes}");
+            }
 
+             if (!File.Exists(MauiDirectory.GetAppDataDirFileName("XsltText.txt")))
+            {
+                xsltTextPath = MauiDirectory.WriteToFileSystem("XsltText.txt");
+                xsltText = File.ReadAllText(xsltTextPath);
+                bool xsltTextYes = File.Exists(xsltTextPath);
+                Console.WriteLine(xsltTextPath);
+                Console.WriteLine($"xsltText exists {xsltTextYes}");
+            }
+            else if (File.Exists(MauiDirectory.WriteToFileSystem("XsltText.txt")))
+            {
+                xsltTextPath = MauiDirectory.WriteToFileSystem("XsltText.txt");
+                xsltText = File.ReadAllText(xsltTextPath);
+                bool xsltTextYes = File.Exists(xsltTextPath);
+                Console.WriteLine(xsltTextPath);
+                Console.WriteLine($"xsltText exists {xsltTextYes}");
+            }
+        }
+        else if (Microsoft.Maui.Devices.DeviceInfo.Platform == DevicePlatform.WinUI)
+        {
+            inventoryPath = "C:\\Users\\quick\\OneDrive\\Desktop\\XsltProgram\\inventory.xsl";
+            xsltTextPath = "C:\\Users\\quick\\OneDrive\\Desktop\\XsltProgram\\XsltText.txt";
+            xmlText = File.ReadAllText(inventoryPath);
+            xsltText = File.ReadAllText(xsltTextPath);
+        }
         xmlStringReader = new StringReader(xmlText);
-
-        xslContent = xsltText.ToString();
-
-       bool inventoryYes = File.Exists(inventoryPath);
-       bool xsltTextYes = File.Exists(xsltTextPath);
-        Console.WriteLine($"Inventory.xml exists {inventoryYes}");
-        Console.WriteLine($"xsltText exists {xsltTextYes}");
-
+        XsltEditor.Text = xsltText;
     }
-    protected async void XsltTranslator_Clicked(object sender, EventArgs e)
+    protected void XsltTranslator_Clicked(object sender, EventArgs e)
     {
         LblError.Text = "";      
-        xslContent = XsltEditor.Text;
-        xslReaderStringReader = new StringReader(xslContent);
+        xsltText = XsltEditor.Text;
+        xslReaderStringReader = new StringReader(xsltText);
         try
         {
             xslt = new XslCompiledTransform();
