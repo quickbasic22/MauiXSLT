@@ -11,10 +11,10 @@
                 <ColumnDefinition Width="0.5*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.75*" />
+                <RowDefinition Height="1*" />
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
-            <Editor x:Name="XsltEditor" Grid.Row="0" Grid.Column="0"></Editor>
+            <Editor x:Name="XsltEditor" HeightRequest="850" Grid.Row="0" Grid.Column="0"></Editor>
             <Label x:Name="LblError" Grid.Row="1" Grid.Column="0" FontSize="Large" TextColor="Red" FontAttributes="Bold" />
             <Button x:Name="XsltTranslator" Grid.Row="1" Grid.Column="1" Text="Translate XSLT" Clicked="XsltTranslator_Clicked" />
             <WebView x:Name="XsltWebView" Grid.Row="0" Grid.Column="1"></WebView>

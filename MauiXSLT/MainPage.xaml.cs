@@ -29,8 +29,50 @@ public partial class MainPage : ContentPage
     {
         InitializeComponent();
         XsltEditor.TextColor = Colors.White;
+        LoadTextAndXmlFiles();
+    }
+    protected void XsltTranslator_Clicked(object sender, EventArgs e)
+    {
+        LoadTextAndXmlFiles();
+
+        xmlStringReader = new StringReader(xmlText);
+
+        xslReaderStringReader = new StringReader(XsltEditor.Text);
+
+        LblError.Text = "";
+        
+        XmlReaderSettings xmlReaderSettings = new XmlReaderSettings();
+        xmlReaderSettings.ConformanceLevel = ConformanceLevel.Auto;
+        xmlReaderSettings.IgnoreComments = true;
+        try
+        {
+            xslt = new XslCompiledTransform();
+
+            using (var xslReader = XmlReader.Create(xslReaderStringReader ,xmlReaderSettings))
+            {
+                xslt.Load(xslReader);
+            }
+            using (var xmlReader = XmlReader.Create(xmlStringReader, xmlReaderSettings))
+            {
+                using (outputWriter = new StringWriter())
+                {
+                    xslt.Transform(xmlReader, null, outputWriter);
+                    string htmlResult = outputWriter.ToString();
+                    XsltWebView.Source = new HtmlWebViewSource { Html = htmlResult };
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            LblError.Text = ex.Message;
+        }
+    }
+
+    void LoadTextAndXmlFiles()
+    {
         if (Microsoft.Maui.Devices.DeviceInfo.Platform == DevicePlatform.Android)
         {
+            XsltEditor.TextColor = Colors.Black;
             if (!File.Exists(MauiDirectory.GetAppDataDirFileName("inventory.xml")))
             {
                 inventoryPath = MauiDirectory.WriteToFileSystem("inventory.xml");
@@ -48,7 +90,7 @@ public partial class MainPage : ContentPage
                 Console.WriteLine($"Inventory.xml exists {inventoryYes}");
             }
 
-             if (!File.Exists(MauiDirectory.GetAppDataDirFileName("XsltText.txt")))
+            if (!File.Exists(MauiDirectory.GetAppDataDirFileName("XsltText.txt")))
             {
                 xsltTextPath = MauiDirectory.WriteToFileSystem("XsltText.txt");
                 xsltText = File.ReadAllText(xsltTextPath);
@@ -58,7 +100,7 @@ public partial class MainPage : ContentPage
             }
             else if (File.Exists(MauiDirectory.WriteToFileSystem("XsltText.txt")))
             {
-                xsltTextPath = MauiDirectory.WriteToFileSystem("XsltText.txt");
+                xsltTextPath = Path.Combine(MauiDirectory.GetAppDataDirFileName("XsltText.txt"));
                 xsltText = File.ReadAllText(xsltTextPath);
                 bool xsltTextYes = File.Exists(xsltTextPath);
                 Console.WriteLine(xsltTextPath);
@@ -72,38 +114,10 @@ public partial class MainPage : ContentPage
             xmlText = File.ReadAllText(inventoryPath);
             xsltText = File.ReadAllText(xsltTextPath);
         }
-        xmlStringReader = new StringReader(xmlText);
-        XsltEditor.Text = xsltText;
-    }
-    protected void XsltTranslator_Clicked(object sender, EventArgs e)
-    {
-        LblError.Text = "";
-        xsltText = XsltEditor.Text;
-        XmlReaderSettings xmlReaderSettings = new XmlReaderSettings();
-        xmlReaderSettings.ConformanceLevel = ConformanceLevel.Auto;
-        xmlReaderSettings.IgnoreComments = true;
-        xslReaderStringReader = new StringReader(xsltText);
-        try
+        if (XsltEditor.Text == null)
         {
-            xslt = new XslCompiledTransform();
-
-            using (var xslReader = XmlReader.Create(xslReaderStringReader,xmlReaderSettings))
-            {
-                xslt.Load(xslReader);
-            }
-            using (var xmlReader = XmlReader.Create(xmlStringReader, xmlReaderSettings))
-            {
-                using (outputWriter = new StringWriter())
-                {
-                    xslt.Transform(xmlReader, null, outputWriter);
-                    string htmlResult = outputWriter.ToString();
-                    XsltWebView.Source = new HtmlWebViewSource { Html = htmlResult };
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            LblError.Text = ex.Message;
+            xmlStringReader = new StringReader(xmlText);
+            XsltEditor.Text = xsltText;
         }
     }
 }

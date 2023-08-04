@@ -4,12 +4,40 @@
              x:Class="MauiXSLT.FullScreenXSLT"
              Title="FullScreenXSLT">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Editor">
+                <Setter Property="WidthRequest" Value="{Static Window.WidthProperty}" />
+                <Setter Property="HeightRequest" Value="{Static Window.HeightProperty}" />
+                <Setter Property="AutoSize" Value="TextChanges" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="WidthRequest" Value="300" />
+                <Setter Property="HeightRequest" Value="80" />
+                <Setter Property="Text" Value="Info Panel" />
+                <Setter Property="FontSize" Value="Large" />
+                <Setter Property="TextColor" Value="Red" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="Text" Value="Translate XSLT" />
+                <Setter Property="Background" Value="lightblue" />
+            </Style>
+            <Style TargetType="WebView">
+                <Setter Property="WidthRequest" Value="1000" />
+                <Setter Property="HeightRequest" Value="800" />
+                <Setter Property="Margin" Value="20" />
+                <Setter Property="Background" Value="LightGreen" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ScrollView>
         <VerticalStackLayout>
             <Editor x:Name="XsltEditor"></Editor>
-            <Label x:Name="LblError" WidthRequest="500" HeightRequest="80" Text="Info Panel" FontSize="Large" TextColor="Red" FontAttributes="Bold" />
-            <Button x:Name="XsltTranslator" WidthRequest="300" HeightRequest="80" Text="Translate XSLT" Clicked="XsltTranslator_Clicked" />
-            <WebView x:Name="XsltWebView" WidthRequest="1000" HeightRequest="800"></WebView>
+            <Label x:Name="LblError" />
+            <Button x:Name="XsltTranslator" Clicked="XsltTranslator_Clicked" />
+            <WebView x:Name="XsltWebView"></WebView>
         </VerticalStackLayout>
     </ScrollView>
 
