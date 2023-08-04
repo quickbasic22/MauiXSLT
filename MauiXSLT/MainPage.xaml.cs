@@ -28,7 +28,8 @@ public partial class MainPage : ContentPage
     public MainPage()
     {
         InitializeComponent();
-         if(Microsoft.Maui.Devices.DeviceInfo.Platform == DevicePlatform.Android)
+        XsltEditor.TextColor = Colors.White;
+        if (Microsoft.Maui.Devices.DeviceInfo.Platform == DevicePlatform.Android)
         {
             if (!File.Exists(MauiDirectory.GetAppDataDirFileName("inventory.xml")))
             {
@@ -66,7 +67,7 @@ public partial class MainPage : ContentPage
         }
         else if (Microsoft.Maui.Devices.DeviceInfo.Platform == DevicePlatform.WinUI)
         {
-            inventoryPath = "C:\\Users\\quick\\OneDrive\\Desktop\\XsltProgram\\inventory.xsl";
+            inventoryPath = "C:\\Users\\quick\\OneDrive\\Desktop\\XsltProgram\\inventory.xml";
             xsltTextPath = "C:\\Users\\quick\\OneDrive\\Desktop\\XsltProgram\\XsltText.txt";
             xmlText = File.ReadAllText(inventoryPath);
             xsltText = File.ReadAllText(xsltTextPath);
@@ -76,18 +77,21 @@ public partial class MainPage : ContentPage
     }
     protected void XsltTranslator_Clicked(object sender, EventArgs e)
     {
-        LblError.Text = "";      
+        LblError.Text = "";
         xsltText = XsltEditor.Text;
+        XmlReaderSettings xmlReaderSettings = new XmlReaderSettings();
+        xmlReaderSettings.ConformanceLevel = ConformanceLevel.Auto;
+        xmlReaderSettings.IgnoreComments = true;
         xslReaderStringReader = new StringReader(xsltText);
         try
         {
             xslt = new XslCompiledTransform();
 
-            using (var xslReader = XmlReader.Create(xslReaderStringReader))
+            using (var xslReader = XmlReader.Create(xslReaderStringReader,xmlReaderSettings))
             {
                 xslt.Load(xslReader);
             }
-            using (var xmlReader = XmlReader.Create(xmlStringReader))
+            using (var xmlReader = XmlReader.Create(xmlStringReader, xmlReaderSettings))
             {
                 using (outputWriter = new StringWriter())
                 {

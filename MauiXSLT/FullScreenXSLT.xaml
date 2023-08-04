@@ -6,16 +6,12 @@
 
     <ScrollView>
         <VerticalStackLayout>
-            <FlexLayout>
-                <Editor x:Name="XsltEditor" FlexLayout.Grow="2"></Editor>
-            </FlexLayout>
-            <FlexLayout>
-                <Label x:Name="LblError" WidthRequest="500" HeightRequest="80" Text="Info Panel" FontSize="Large" TextColor="Red" FontAttributes="Bold" />
-                <Button x:Name="XsltTranslator" WidthRequest="300" HeightRequest="80" Text="Translate XSLT" Clicked="XsltTranslator_Clicked" />
-                <WebView x:Name="XsltWebView" FlexLayout.AlignSelf="Auto"></WebView>
-            </FlexLayout>
+            <Editor x:Name="XsltEditor"></Editor>
+            <Label x:Name="LblError" WidthRequest="500" HeightRequest="80" Text="Info Panel" FontSize="Large" TextColor="Red" FontAttributes="Bold" />
+            <Button x:Name="XsltTranslator" WidthRequest="300" HeightRequest="80" Text="Translate XSLT" Clicked="XsltTranslator_Clicked" />
+            <WebView x:Name="XsltWebView" WidthRequest="1000" HeightRequest="800"></WebView>
         </VerticalStackLayout>
-
     </ScrollView>
+
     
 </ContentPage>

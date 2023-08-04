@@ -29,6 +29,7 @@ public partial class FullScreenXSLT : ContentPage
     public FullScreenXSLT()
 	{
 		InitializeComponent();
+        XsltEditor.TextColor = Colors.White;
 
         if (Microsoft.Maui.Devices.DeviceInfo.Platform == DevicePlatform.Android)
         {
@@ -68,7 +69,7 @@ public partial class FullScreenXSLT : ContentPage
         }
         else if (Microsoft.Maui.Devices.DeviceInfo.Platform == DevicePlatform.WinUI)
         {
-            inventoryPath = "C:\\Users\\quick\\OneDrive\\Desktop\\XsltProgram\\inventory.xsl";
+            inventoryPath = "C:\\Users\\quick\\OneDrive\\Desktop\\XsltProgram\\inventory.xml";
             xsltTextPath = "C:\\Users\\quick\\OneDrive\\Desktop\\XsltProgram\\XsltText.txt";
             xmlText = File.ReadAllText(inventoryPath);
             xsltText = File.ReadAllText(xsltTextPath);
@@ -78,19 +79,34 @@ public partial class FullScreenXSLT : ContentPage
     }
     private void XsltTranslator_Clicked(object sender, EventArgs e)
     {
-        
+        if (XsltEditor.IsVisible)
+        {
+            XsltEditor.IsVisible = false;
+            XsltWebView.IsVisible = true;
+        }
+        else
+        {
+            XsltEditor.IsVisible = true;
+            XsltWebView.IsVisible = true;
+        }
+        xmlStringReader = new StringReader(xmlText);
+        XsltEditor.Text = xsltText;
+
         LblError.Text = "";
         xsltText = XsltEditor.Text;
+        XmlReaderSettings xmlReaderSettings = new XmlReaderSettings();
+        xmlReaderSettings.ConformanceLevel = ConformanceLevel.Auto;
+        xmlReaderSettings.IgnoreComments = true;
         xslReaderStringReader = new StringReader(xsltText);
         try
         {
             xslt = new XslCompiledTransform();
 
-            using (var xslReader = XmlReader.Create(xslReaderStringReader))
+            using (var xslReader = XmlReader.Create(xslReaderStringReader, xmlReaderSettings))
             {
                 xslt.Load(xslReader);
             }
-            using (var xmlReader = XmlReader.Create(xmlStringReader))
+            using (var xmlReader = XmlReader.Create(xmlStringReader, xmlReaderSettings))
             {
                 using (outputWriter = new StringWriter())
                 {
