@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!-- <?xml-stylesheet type='text/xsl' href='style.xsl'?> -->
+<!--List of machines-->
+<Machines current="True" manager="Tobias">
+	<!--1. machine details-->
+	<Machine test="1809817926">
+		<Name>Server0001</Name>
+		<IP>89.33.98.125</IP>
+		<GUID>1b4303bb-1646-4d97-8f11-75e49e78fb25</GUID>
+		<Information info1="some info" info2="more info">RawContent</Information>
+		<CodeSegment info3="another attribute"><![CDATA[this is untouched code and can contain special characters /\@<>]]></CodeSegment>
+	</Machine>
+	<!--2. machine details-->
+	<Machine test="1738475485">
+		<Name>Server0002</Name>
+		<IP>177.209.78.233</IP>
+		<GUID>5923c320-7086-41d3-83f0-382cac9db4c3</GUID>
+		<Information info1="some info" info2="more info">RawContent</Information>
+		<CodeSegment info3="another attribute"><![CDATA[this is untouched code and can contain special characters /\@<>]]></CodeSegment>
+	</Machine>
+	<!--3. machine details-->
+	<Machine test="1308807450">
+		<Name>Server0003</Name>
+		<IP>229.69.234.107</IP>
+		<GUID>f2b53f6c-0d7f-4d5a-8fb7-43c1a85e140d</GUID>
+		<Information info1="some info" info2="more info">RawContent</Information>
+		<CodeSegment info3="another attribute"><![CDATA[this is untouched code and can contain special characters /\@<>]]></CodeSegment>
+	</Machine>
+	<!--4. machine details-->
+	<Machine test="1885674162">
+		<Name>Server0004</Name>
+		<IP>60.139.84.79</IP>
+		<GUID>d4ac31c2-bd05-406f-9f63-87d0ca7a7cf1</GUID>
+		<Information info1="some info" info2="more info">RawContent</Information>
+		<CodeSegment info3="another attribute"><![CDATA[this is untouched code and can contain special characters /\@<>]]></CodeSegment>
+	</Machine>
+	<!--5. machine details-->
+	<Machine test="839957032">
+		<Name>Server0005</Name>
+		<IP>208.7.143.85</IP>
+		<GUID>115f490d-06a0-469e-90e8-b182c856c469</GUID>
+		<Information info1="some info" info2="more info">RawContent</Information>
+		<CodeSegment info3="another attribute"><![CDATA[this is untouched code and can contain special characters /\@<>]]></CodeSegment>
+	</Machine>
+	<!--6. machine details-->
+	<Machine test="2012948819">
+		<Name>Server0006</Name>
+		<IP>22.11.157.67</IP>
+		<GUID>a5677b1c-643c-4ec4-8ca9-72210cce5a11</GUID>
+		<Information info1="some info" info2="more info">RawContent</Information>
+		<CodeSegment info3="another attribute"><![CDATA[this is untouched code and can contain special characters /\@<>]]></CodeSegment>
+	</Machine>
+	<!--7. machine details-->
+	<Machine test="995640924">
+		<Name>Server0007</Name>
+		<IP>147.156.218.48</IP>
+		<GUID>08e19949-021c-4d61-80f0-be87233c66d0</GUID>
+		<Information info1="some info" info2="more info">RawContent</Information>
+		<CodeSegment info3="another attribute"><![CDATA[this is untouched code and can contain special characters /\@<>]]></CodeSegment>
+	</Machine>
+	<!--8. machine details-->
+	<Machine test="907790522">
+		<Name>Server0008</Name>
+		<IP>251.140.74.71</IP>
+		<GUID>458f700c-d1fc-4047-b2dd-c29b9544a3e5</GUID>
+		<Information info1="some info" info2="more info">RawContent</Information>
+		<CodeSegment info3="another attribute"><![CDATA[this is untouched code and can contain special characters /\@<>]]></CodeSegment>
+	</Machine>
+	<!--9. machine details-->
+	<Machine test="706963765">
+		<Name>Server0009</Name>
+		<IP>170.132.8.184</IP>
+		<GUID>4bdea78a-5d97-4822-abcc-71740656bda9</GUID>
+		<Information info1="some info" info2="more info">RawContent</Information>
+		<CodeSegment info3="another attribute"><![CDATA[this is untouched code and can contain special characters /\@<>]]></CodeSegment>
+	</Machine>
+	<!--10. machine details-->
+	<Machine test="1431901849">
+		<Name>Server0010</Name>
+		<IP>256.94.238.115</IP>
+		<GUID>058c263f-2d55-4d50-816b-78cf7360dfca</GUID>
+		<Information info1="some info" info2="more info">RawContent</Information>
+		<CodeSegment info3="another attribute"><![CDATA[this is untouched code and can contain special characters /\@<>]]></CodeSegment>
+	</Machine>
+</Machines>

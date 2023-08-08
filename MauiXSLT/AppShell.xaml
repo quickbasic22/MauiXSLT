@@ -7,6 +7,11 @@
     Shell.FlyoutBehavior="Flyout"
     Title="Shell Flyout Page">
 
+
+    <ShellContent
+        Title="HTML From Xml Writer"
+        ContentTemplate="{DataTemplate local:HTMLFromXmlWriter}"
+        Route="HTMLFromXmlWriter" />
     <ShellContent
         Title="Full Screen XSLT"
         ContentTemplate="{DataTemplate local:FullScreenXSLT}"

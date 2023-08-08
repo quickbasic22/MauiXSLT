@@ -52,12 +52,14 @@ public partial class MainPage : ContentPage
             {
                 xslt.Load(xslReader);
             }
+            string css = "<head><title>XML Stylesheet Transformation</title><link type='text/css' rel='stylesheet' href='WebView.css'></head>";
             using (var xmlReader = XmlReader.Create(xmlStringReader, xmlReaderSettings))
             {
                 using (outputWriter = new StringWriter())
                 {
                     xslt.Transform(xmlReader, null, outputWriter);
                     string htmlResult = outputWriter.ToString();
+                    htmlResult = htmlResult.Insert(7, css);
                     XsltWebView.Source = new HtmlWebViewSource { Html = htmlResult };
                 }
             }
@@ -109,8 +111,8 @@ public partial class MainPage : ContentPage
         }
         else if (Microsoft.Maui.Devices.DeviceInfo.Platform == DevicePlatform.WinUI)
         {
-            inventoryPath = "C:\\Users\\quick\\OneDrive\\Desktop\\XsltProgram\\inventory.xml";
-            xsltTextPath = "C:\\Users\\quick\\OneDrive\\Desktop\\XsltProgram\\XsltText.txt";
+            inventoryPath = "~\\WinUIFiles\\inventory.xml";
+            xsltTextPath = "~\\WinUIFiles\\XsltText.txt";
             xmlText = File.ReadAllText(inventoryPath);
             xsltText = File.ReadAllText(xsltTextPath);
         }

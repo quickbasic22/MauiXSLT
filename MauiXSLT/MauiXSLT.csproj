@@ -56,6 +56,7 @@
 	<ItemGroup>
 	  <None Remove="Resources\Raw\inventory.xml" />
 	  <None Remove="Resources\Raw\XsltText.txt" />
+	  <None Remove="WinUIFiles\inventory.xml" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -71,9 +72,16 @@
 	  <MauiXaml Update="FullScreenXSLT.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="HTMLFromXmlWriter.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="ViewFiles.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="WinUIFiles\inventory.xml" />
 	</ItemGroup>
 
 </Project>

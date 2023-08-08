@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MauiXSLT"
+             x:Class="MauiXSLT.HTMLFromXmlWriter"
+             Title="">
+    <VerticalStackLayout>
+        <WebView x:Name="MyWebView" WidthRequest="1200" HeightRequest="850"></WebView>
+    </VerticalStackLayout>
+</ContentPage>

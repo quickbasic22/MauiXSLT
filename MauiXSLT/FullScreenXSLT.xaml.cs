@@ -32,9 +32,7 @@ public partial class FullScreenXSLT : ContentPage
         LoadTextAndXmlFiles();
     }
     private void XsltTranslator_Clicked(object sender, EventArgs e)
-    {
-        Debug.WriteLine("XsltEdior size = " + XsltEditor.Width.ToString() + " " + XsltEditor.Height.ToString());
-        
+    { 
         LoadTextAndXmlFiles();
 
 
@@ -66,12 +64,15 @@ public partial class FullScreenXSLT : ContentPage
             {
                 xslt.Load(xslReader);
             }
+            string css = "<head><title>XML Stylesheet Transformation</title><link rel='stylesheet' href='webView.css'></head>";
             using (var xmlReader = XmlReader.Create(xmlStringReader, xmlReaderSettings))
             {
                 using (outputWriter = new StringWriter())
                 {
                     xslt.Transform(xmlReader, null, outputWriter);
                     string htmlResult = outputWriter.ToString();
+                    htmlResult = htmlResult.Insert(7, css);
+                    Debug.WriteLine(htmlResult);
                     XsltWebView.Source = new HtmlWebViewSource { Html = htmlResult };
                 }
             }
@@ -128,8 +129,8 @@ public partial class FullScreenXSLT : ContentPage
         {
             XsltEditor.TextColor = Colors.White;
             XsltEditor.BackgroundColor = Colors.Black;
-            inventoryPath = "C:\\Users\\quick\\OneDrive\\Desktop\\XsltProgram\\inventory.xml";
-            xsltTextPath = "C:\\Users\\quick\\OneDrive\\Desktop\\XsltProgram\\XsltText.txt";
+            inventoryPath = "~\\WinUIFiles\\inventory.xml";
+            xsltTextPath = "~\\WinUIFiles\\XsltText.txt";
             xmlText = File.ReadAllText(inventoryPath);
             xsltText = File.ReadAllText(xsltTextPath);
         }
