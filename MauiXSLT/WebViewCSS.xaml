@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiXSLT.WebViewCSS"
+             Title="WebViewCSS">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <StyleSheet Source="Resources/style.css" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <VerticalStackLayout>
+        <WebView x:Name="webView1" WidthRequest="1000" HeightRequest="850"></WebView>
+    </VerticalStackLayout>
+</ContentPage>

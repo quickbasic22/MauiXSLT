@@ -54,6 +54,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiCss Remove="style.css" />
+	  <MauiCss Remove="WebView.css" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Resources\Raw\inventory.xml" />
 	  <None Remove="Resources\Raw\XsltText.txt" />
 	  <None Remove="WinUIFiles\inventory.xml" />
@@ -76,6 +81,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="ViewFiles.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="WebViewCSS.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

@@ -7,7 +7,10 @@
     Shell.FlyoutBehavior="Flyout"
     Title="Shell Flyout Page">
 
-
+    <ShellContent
+        Title="WebViewCSS"
+        ContentTemplate="{DataTemplate local:WebViewCSS}"
+        Route="WebViewCSS" />
     <ShellContent
         Title="HTML From Xml Writer"
         ContentTemplate="{DataTemplate local:HTMLFromXmlWriter}"
